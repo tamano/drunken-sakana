@@ -1,4 +1,4 @@
-# drunken-sakana
+# drunken_sakana
 [![Circle CI](https://circleci.com/gh/tamano/drunken_sakana.svg?style=svg)](https://circleci.com/gh/tamano/drunken_sakana) [![Code Climate](https://codeclimate.com/github/tamano/drunken_sakana/badges/gpa.svg)](https://codeclimate.com/github/tamano/drunken_sakana) [![Test Coverage](https://codeclimate.com/github/tamano/drunken_sakana/badges/coverage.svg)](https://codeclimate.com/github/tamano/drunken_sakana)
 
 Object/XML Mapper for ruby
@@ -12,7 +12,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'drunken-sakana'
+gem 'drunken_sakana'
 ```
 
 And then execute:
@@ -21,7 +21,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install drunken-sakana
+    $ gem install drunken_sakana
 
 ## Usage
 
@@ -35,7 +35,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/xml_parser/fork )
+1. Fork it ( https://github.com/[my-github-username]/CODECLIMATE_REPO_TOKEN/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
