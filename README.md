@@ -1,5 +1,5 @@
 # drunken-sakana
-[![Circle CI](https://circleci.com/gh/tamano/drunken-sakana.svg?style=svg)](https://circleci.com/gh/tamano/drunken-sakana) [![Code Climate](https://codeclimate.com/github/tamano/drunken-sakana/badges/gpa.svg)](https://codeclimate.com/github/tamano/drunken-sakana) [![Test Coverage](https://codeclimate.com/github/tamano/drunken-sakana/badges/coverage.svg)](https://codeclimate.com/github/tamano/drunken-sakana)
+[![Circle CI](https://circleci.com/gh/tamano/drunken_sakana.svg?style=svg)](https://circleci.com/gh/tamano/drunken_sakana) [![Code Climate](https://codeclimate.com/github/tamano/drunken_sakana/badges/gpa.svg)](https://codeclimate.com/github/tamano/drunken_sakana) [![Test Coverage](https://codeclimate.com/github/tamano/drunken_sakana/badges/coverage.svg)](https://codeclimate.com/github/tamano/drunken_sakana)
 
 Object/XML Mapper for ruby
 
