@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe XmlParser do
+describe DrunkenSakana do
   it 'has a version number' do
-    expect(XmlParser::VERSION).not_to be nil
+    expect(DrunkenSakana::VERSION).not_to be nil
   end
 
   it 'does something useful' do

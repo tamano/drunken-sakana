@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'xml_parser/version'
+require 'drunken-sakana/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "xml_parser"
-  spec.version       = XmlParser::VERSION
+  spec.name          = "drunken-sakana"
+  spec.version       = DrunkenSakana::VERSION
   spec.authors       = ["Yuya TAMANO"]
   spec.email         = ["everfree.main@gmail.com"]
 
