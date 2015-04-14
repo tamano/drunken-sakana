@@ -18,7 +18,26 @@ describe DrunkenSakana do
       it "returns nil if attribute doesn't exists" do
         expect(@xml.key2).to be(nil)
       end
+    end
 
+    context 'xml with multiple keys' do
+      before :all do
+        @xml = DrunkenSakana.parse('<key1>value1</key1><key1>value2</key1>')
+      end
+
+      it 'contains key1 as Array of Strings' do
+        expect(@xml.key1).to eq(['value1', 'value2'])
+      end
+    end
+
+    context 'xml with tree keys' do
+      before :all do
+        @xml = DrunkenSakana.parse('<key1><subkey1>value1</subkey1></key1>')
+      end
+
+      it 'contains key1.subkey1 as a String value' do
+        expect(@xml.key1.subkey1).to eq('value1')
+      end
     end
   end
 end
