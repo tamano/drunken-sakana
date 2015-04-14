@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'drunken-sakana/version'
+require 'drunken_sakana/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'drunken-sakana'
+  spec.name          = 'drunken_sakana'
   spec.version       = DrunkenSakana::VERSION
   spec.authors       = ['Yuya TAMANO']
   spec.email         = ['everfree.main@gmail.com']

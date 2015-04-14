@@ -1,4 +1,4 @@
-require 'drunken-sakana/version'
+require 'drunken_sakana/version'
 
 # Object/XML Parser
 module DrunkenSakana
