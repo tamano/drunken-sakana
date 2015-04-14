@@ -5,7 +5,20 @@ describe DrunkenSakana do
     expect(DrunkenSakana::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  describe '#parse' do
+    context 'simple xml' do
+      before :all do
+        @xml = DrunkenSakana.parse('<key1>value1</key1>')
+      end
+
+      it 'contains key1 as attribute' do
+        expect(@xml.key1).to eq('value1')
+      end
+
+      it "returns nil if attribute doesn't exists" do
+        expect(@xml.key2).to be(nil)
+      end
+
+    end
   end
 end
