@@ -1,3 +1,3 @@
-module XmlParser
+module DrunkenSakana
   VERSION = "0.1.0"
 end
