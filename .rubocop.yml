@@ -37,16 +37,9 @@ Style/AsciiComments:
   Enabled: false
 
 # Cop supports --auto-correct.
-Style/Blocks:
-  Enabled: false
-
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/BracesAroundHashParameters:
   Enabled: false
-
-Style/RegexpLiteral:
-  MaxSlashes: 0
 
 # Cop supports --auto-correct.
 #Style/EmptyLinesAroundBody:
