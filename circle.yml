@@ -9,4 +9,3 @@ dependencies:
 test:
   pre:
     - bundle exec rubocop
-    - bundle exec rails_best_practices .
