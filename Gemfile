@@ -7,4 +7,7 @@ group :development, :test do
   gem 'pry'
   gem 'awesome_print'
   gem 'hirb'
+
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
 end
