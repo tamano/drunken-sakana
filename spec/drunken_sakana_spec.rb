@@ -5,7 +5,7 @@ describe DrunkenSakana do
     expect(DrunkenSakana::VERSION).not_to be nil
   end
 
-  describe '#parse' do
+  describe '.parse' do
     context 'simple xml' do
       before :all do
         @xml = DrunkenSakana.parse('<key1>value1</key1>')
