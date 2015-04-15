@@ -9,4 +9,7 @@ group :development, :test do
   gem 'hirb'
 
   gem 'guard-rspec'
+  gem 'guard-rubocop'
+
+
 end
