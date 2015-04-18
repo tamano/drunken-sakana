@@ -8,7 +8,7 @@ describe DrunkenSakana do
   describe '.parse' do
     context 'simple xml' do
       before :all do
-        @xml = DrunkenSakana.parse('<key1>value1</key1>')
+        @xml = DrunkenSakana.parse('<root><key1>value1</key1></root>')
       end
 
       it 'contains key1 as attribute' do
@@ -22,7 +22,7 @@ describe DrunkenSakana do
 
     context 'xml with multiple keys' do
       before :all do
-        @xml = DrunkenSakana.parse('<key1>value1</key1><key1>value2</key1>')
+        @xml = DrunkenSakana.parse('<root><key1>value1</key1><key1>value2</key1></root>')
       end
 
       it 'contains key1 as Array of Strings' do
@@ -30,9 +30,9 @@ describe DrunkenSakana do
       end
     end
 
-    context 'xml with tree keys' do
+    context 'xml with tree-structure keys' do
       before :all do
-        @xml = DrunkenSakana.parse('<key1><subkey1>value1</subkey1></key1>')
+        @xml = DrunkenSakana.parse('<root><key1><subkey1>value1</subkey1></key1></root>')
       end
 
       it 'contains key1.subkey1 as a String value' do
