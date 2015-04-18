@@ -39,5 +39,15 @@ describe DrunkenSakana do
         expect(@xml.key1.subkey1).to eq('value1')
       end
     end
+
+    context 'xml with multiple keys with tree-structure keys' do
+      before :all do
+        @xml = DrunkenSakana.parse('<root><key1><subkey1>value1</subkey1><subkey1>value2</subkey1></key1></root>')
+      end
+
+      it 'contains key1.subkey1[1] as a String value' do
+        expect(@xml.key1.subkey1[1]).to eq('value2')
+      end
+    end
   end
 end
