@@ -10,4 +10,6 @@ group :development, :test do
 
   gem 'guard-rspec'
   gem 'guard-rubocop'
+  gem 'terminal-notifier-guard'
+
 end
