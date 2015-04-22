@@ -49,5 +49,15 @@ describe DrunkenSakana do
         expect(@xml.key1.subkey1[1]).to eq('value2')
       end
     end
+
+    context 'xml with attribute' do
+      before :all do
+        @xml = DrunkenSakana.parse('<root><key1 attribute="attribute1">value1</key1></root>')
+      end
+
+      it 'contains key1.attribute as a String value' do
+        expect(@xml.key1.attribute).to eq('attribute1')
+      end
+    end
   end
 end
