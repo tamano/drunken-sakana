@@ -60,4 +60,9 @@ describe DrunkenSakana do
       end
     end
   end
+
+  describe '.find' do
+    it 'returns Array of XmlObjects filterd by parameters'
+    it 'returns empty Array if no result has found'
+  end
 end
