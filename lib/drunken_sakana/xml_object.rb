@@ -7,10 +7,16 @@ class DrunkenSakana::XmlObject
   end
 
   def method_missing(name)
-    return nil unless @hash[name.to_s]
+    target_value = @hash[name.to_s]
+    # no element or attribute
+    return nil unless target_value
 
+    # attribute
+    return target_value if target_value.is_a?(String)
+
+    # element
     result = []
-    @hash[name.to_s].each do |value|
+    target_value.each do |value|
       if value.is_a?(String)
         result << value
       else
