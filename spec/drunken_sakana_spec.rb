@@ -20,6 +20,24 @@ describe DrunkenSakana do
       end
     end
 
+    context 'simple xml with attributes' do
+      before :all do
+        @xml = DrunkenSakana.parse('<root><key1 attribute1="att1">value1</key1></root>')
+      end
+
+      it 'contains attribute1 as key1\'s attribute' do
+        expect(@xml.key1.attribute1).to eq('att1')
+      end
+
+      it 'contains key1 as attribute' do
+        expect(@xml.key1).to eq('value1')
+      end
+
+      it "returns nil if attribute doesn't exists" do
+        expect(@xml.key2).to be(nil)
+      end
+    end
+
     context 'xml with multiple keys' do
       before :all do
         @xml = DrunkenSakana.parse('<root><key1>value1</key1><key1>value2</key1></root>')
