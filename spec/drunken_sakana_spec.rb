@@ -62,7 +62,99 @@ describe DrunkenSakana do
   end
 
   describe '.find' do
-    it 'returns Array of XmlObjects filterd by parameters'
-    it 'returns empty Array if no result has found'
+    context 'simple xml' do
+      before :all do
+        text  = ''
+        text += %(<root>                      )
+        text += %(  <key attribute="att1">    )
+        text += %(    value                   )
+        text += %(  </key>                    )
+        text += %(  <key attribute="att2">    )
+        text += %(    value2                  )
+        text += %(  </key>                    )
+        text += %(  <key attribute="att3">    )
+        text += %(    value                   )
+        text += %(  </key>                    )
+        text += %(</root>                     )
+        @xml = DrunkenSakana.parse(text)
+      end
+
+      it 'returns Array of XmlObjects filterd by element value' do
+        result = @xml.find('key', 'value')
+        expect(result.size).to eq(2)
+        expect(result[0].attribute).to eq('att1')
+        expect(result[1].attribute).to eq('att3')
+      end
+
+      it 'returns Array of XmlObjects filterd by attribute value' do
+        result = @xml.find('attribute', 'att2')
+        expect(result.size).to eq(1)
+        expect(result[0]).to eq('value2')
+      end
+
+      it 'returns empty Array if no result has found'
+    end
+
+    context 'simple xml with other element' do
+      before :all do
+        text  = ''
+        text += %(<root>                      )
+        text += %(  <target attribute="att1"> )
+        text += %(    value                   )
+        text += %(  </key>                    )
+        text += %(  <dummy attribute="att1">  )
+        text += %(    value                   )
+        text += %(  </key>                    )
+        text += %(</root>                     )
+        @xml = DrunkenSakana.parse(text)
+      end
+
+      it 'returns Array of XmlObjects filterd by element value' do
+        result = @xml.find('target', 'value')
+        expect(result.size).to eq(1)
+        expect(result[0].attribute).to eq('att1')
+      end
+    end
+
+    context 'xml with tree-structure keys' do
+      before :all do
+        text  = ''
+        text += %(<root>                      )
+        text += %(  <key attribute="att1">    )
+        text += %(    <subkey1>               )
+        text += %(      value                 )
+        text += %(    </subkey1>              )
+        text += %(  </key>                    )
+        text += %(  <key attribute="att2">    )
+        text += %(    will not be found       )
+        text += %(  </key>                    )
+        text += %(  <key attribute="att3">    )
+        text += %(    <subkey1>               )
+        text += %(      value2                )
+        text += %(    </subkey1>              )
+        text += %(  </key>                    )
+        text += %(  <key attribute="att4">    )
+        text += %(    <subkey2>               )
+        text += %(      value                 )
+        text += %(    </subkey2>              )
+        text += %(  </key>                    )
+        text += %(  <key attribute="att5">    )
+        text += %(    <subkey1>               )
+        text += %(      value                 )
+        text += %(    </subkey1>              )
+        text += %(  </key>                    )
+        text += %(</root>                     )
+        @xml = DrunkenSakana.parse(text)
+      end
+
+      it 'returns Array of XmlObjects filterd by treed element value' do
+        result = @xml.find('key.subkey1', 'value')
+        expect(result.size).to eq(2)
+        expect(result[0].attribute).to eq('att1')
+        expect(result[1].attribute).to eq('att5')
+      end
+    end
+
+
   end
 end
