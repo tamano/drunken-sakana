@@ -16,7 +16,7 @@ describe DrunkenSakana do
       end
 
       it "returns nil if key doesn't exists" do
-        expect(@xml.key2.content).to be(nil)
+        expect(@xml.key2).to be(nil)
       end
     end
 
@@ -34,7 +34,7 @@ describe DrunkenSakana do
       end
 
       it "returns nil if key or attribute doesn't exists" do
-        expect(@xml.key2.content).to be(nil)
+        expect(@xml.key2).to be(nil)
       end
     end
 
@@ -43,8 +43,13 @@ describe DrunkenSakana do
         @xml = DrunkenSakana.parse('<root><key1>value1</key1><key1>value2</key1></root>')
       end
 
-      it "contains key1's content as Array of Strings" do
-        expect(@xml.key1.content).to eq(['value1', 'value2'])
+      it "contains key1's content as Array of DrunkenSakana::XmlObject" do
+        # TODO: Split test cases
+        expect(@xml.key1.is_a?(Array)).to be_truthy
+        expect(@xml.key1[0].is_a?(DrunkenSakana::XmlObject)).to be_truthy
+        expect(@xml.key1[0].content).to eq('value1')
+        expect(@xml.key1[1].is_a?(DrunkenSakana::XmlObject)).to be_truthy
+        expect(@xml.key1[1].content).to eq('value2')
       end
     end
 
@@ -64,7 +69,11 @@ describe DrunkenSakana do
       end
 
       it "contains key1's child as Array of DrunkenSakana::XmlObject" do
-        expect(@xml.key1.subkey1[1].is_a?(DrunkenSakana::XmlObject)).to be_true
+        # TODO: Split test cases
+        expect(@xml.key1.subkey1.is_a?(Array)).to be_truthy
+        expect(@xml.key1.subkey1[0].is_a?(DrunkenSakana::XmlObject)).to be_truthy
+        expect(@xml.key1.subkey1[0].content).to eq('value1')
+        expect(@xml.key1.subkey1[1].is_a?(DrunkenSakana::XmlObject)).to be_truthy
         expect(@xml.key1.subkey1[1].content).to eq('value2')
       end
     end
