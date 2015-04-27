@@ -58,8 +58,12 @@ describe DrunkenSakana do
         @xml = DrunkenSakana.parse('<root><key1><subkey1>value1</subkey1></key1></root>')
       end
 
-      it "contains subkey1's content as child of key" do
+      it "contains subkey1's content as a child of key" do
         expect(@xml.key1.subkey1.content).to eq('value1')
+      end
+
+      it 'also accessable using .content to children of subkey1' do
+        expect(@xml.key1.content.subkey1.content).to eq('value1')
       end
     end
 
@@ -87,7 +91,7 @@ describe DrunkenSakana do
         expect(@xml.key1.attribute).to eq('attribute1')
       end
 
-      it "returns nil if content is called" do
+      it 'returns nil if content is called' do
         expect(@xml.key1.content).to be_nil
       end
     end
