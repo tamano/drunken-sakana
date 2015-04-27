@@ -101,25 +101,25 @@ describe DrunkenSakana do
     context 'simple xml' do
       before :all do
         text  = ''
-        text += %(<root>                      )
-        text += %(  <key attribute="att1">    )
-        text += %(    value                   )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att2">    )
-        text += %(    value2                  )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att3">    )
-        text += %(    value                   )
-        text += %(  </key>                    )
-        text += %(</root>                     )
+        text += %(<root>                      ).strip
+        text += %(  <key attribute="att1">    ).strip
+        text += %(    value                   ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att2">    ).strip
+        text += %(    value2                  ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att3">    ).strip
+        text += %(    value                   ).strip
+        text += %(  </key>                    ).strip
+        text += %(</root>                     ).strip
         @xml = DrunkenSakana.parse(text)
       end
 
       it 'returns Array of XmlObjects filterd by element value' do
         result = @xml.find_by_content('key', 'value')
         expect(result.size).to eq(2)
-        expect(result[0].attribute).to eq('att1')
-        expect(result[1].attribute).to eq('att3')
+        expect(result[0].key.attribute).to eq('att1')
+        expect(result[1].key.attribute).to eq('att3')
       end
 
       it 'returns empty Array if no result has found'
@@ -128,60 +128,60 @@ describe DrunkenSakana do
     context 'simple xml with other element' do
       before :all do
         text  = ''
-        text += %(<root>                      )
-        text += %(  <target attribute="att1"> )
-        text += %(    value                   )
-        text += %(  </target>                 )
-        text += %(  <dummy attribute="att2">  )
-        text += %(    value                   )
-        text += %(  </dummy>                  )
-        text += %(</root>                     )
+        text += %(<root>                      ).strip
+        text += %(  <target attribute="att1"> ).strip
+        text += %(    value                   ).strip
+        text += %(  </target>                 ).strip
+        text += %(  <dummy attribute="att2">  ).strip
+        text += %(    value                   ).strip
+        text += %(  </dummy>                  ).strip
+        text += %(</root>                     ).strip
         @xml = DrunkenSakana.parse(text)
       end
 
       it 'returns Array of XmlObjects filterd by element value' do
         result = @xml.find_by_content('target', 'value')
         expect(result.size).to eq(1)
-        expect(result[0].attribute).to eq('att1')
+        expect(result[0].target.attribute).to eq('att1')
       end
     end
 
     context 'xml with tree-structure keys' do
       before :all do
         text  = ''
-        text += %(<root>                      )
-        text += %(  <key attribute="att1">    )
-        text += %(    <subkey1>               )
-        text += %(      value                 )
-        text += %(    </subkey1>              )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att2">    )
-        text += %(    will not be found       )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att3">    )
-        text += %(    <subkey1>               )
-        text += %(      value2                )
-        text += %(    </subkey1>              )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att4">    )
-        text += %(    <subkey2>               )
-        text += %(      value                 )
-        text += %(    </subkey2>              )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att5">    )
-        text += %(    <subkey1>               )
-        text += %(      value                 )
-        text += %(    </subkey1>              )
-        text += %(  </key>                    )
-        text += %(</root>                     )
+        text += %(<root>                      ).strip
+        text += %(  <key attribute="att1">    ).strip
+        text += %(    <subkey1>               ).strip
+        text += %(      value                 ).strip
+        text += %(    </subkey1>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att2">    ).strip
+        text += %(    will not be found       ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att3">    ).strip
+        text += %(    <subkey1>               ).strip
+        text += %(      value2                ).strip
+        text += %(    </subkey1>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att4">    ).strip
+        text += %(    <subkey2>               ).strip
+        text += %(      value                 ).strip
+        text += %(    </subkey2>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att5">    ).strip
+        text += %(    <subkey1>               ).strip
+        text += %(      value                 ).strip
+        text += %(    </subkey1>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(</root>                     ).strip
         @xml = DrunkenSakana.parse(text)
       end
 
       it 'returns Array of XmlObjects filterd by treed element value' do
         result = @xml.find_by_content('key.subkey1', 'value')
-        expect(result.size).to eq(2)
-        expect(result[0].attribute).to eq('att1')
-        expect(result[1].attribute).to eq('att5')
+        expect(result.key.size).to eq(2)
+        expect(result.key[0].attribute).to eq('att1')
+        expect(result.key[1].attribute).to eq('att5')
       end
     end
   end
@@ -190,17 +190,17 @@ describe DrunkenSakana do
     context 'simple xml' do
       before :all do
         text  = ''
-        text += %(<root>                      )
-        text += %(  <key attribute="att1">    )
-        text += %(    value                   )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att2">    )
-        text += %(    value2                  )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att3">    )
-        text += %(    value                   )
-        text += %(  </key>                    )
-        text += %(</root>                     )
+        text += %(<root>                      ).strip
+        text += %(  <key attribute="att1">    ).strip
+        text += %(    value                   ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att2">    ).strip
+        text += %(    value2                  ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att3">    ).strip
+        text += %(    value                   ).strip
+        text += %(  </key>                    ).strip
+        text += %(</root>                     ).strip
         @xml = DrunkenSakana.parse(text)
       end
 
@@ -216,14 +216,14 @@ describe DrunkenSakana do
     context 'simple xml with other element' do
       before :all do
         text  = ''
-        text += %(<root>                      )
-        text += %(  <target attribute="att1"> )
-        text += %(    value                   )
-        text += %(  </target>                 )
-        text += %(  <dummy attribute="att1">  )
-        text += %(    value2                  )
-        text += %(  </dummy>                  )
-        text += %(</root>                     )
+        text += %(<root>                      ).strip
+        text += %(  <target attribute="att1"> ).strip
+        text += %(    value                   ).strip
+        text += %(  </target>                 ).strip
+        text += %(  <dummy attribute="att1">  ).strip
+        text += %(    value2                  ).strip
+        text += %(  </dummy>                  ).strip
+        text += %(</root>                     ).strip
         @xml = DrunkenSakana.parse(text)
       end
 
@@ -237,31 +237,31 @@ describe DrunkenSakana do
     context 'xml with tree-structure keys' do
       before :all do
         text  = ''
-        text += %(<root>                      )
-        text += %(  <key attribute="att1">    )
-        text += %(    <subkey1 subatt="x1">   )
-        text += %(      value                 )
-        text += %(    </subkey1>              )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att2">    )
-        text += %(    will not be found       )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att3">    )
-        text += %(    <subkey1 subatt="x3">   )
-        text += %(      value2                )
-        text += %(    </subkey1>              )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att4">    )
-        text += %(    <subkey2 subatt="x1">   )
-        text += %(      value                 )
-        text += %(    </subkey2>              )
-        text += %(  </key>                    )
-        text += %(  <key attribute="att5">    )
-        text += %(    <subkey1 subatt="x1">   )
-        text += %(      value                 )
-        text += %(    </subkey1>              )
-        text += %(  </key>                    )
-        text += %(</root>                     )
+        text += %(<root>                      ).strip
+        text += %(  <key attribute="att1">    ).strip
+        text += %(    <subkey1 subatt="x1">   ).strip
+        text += %(      value                 ).strip
+        text += %(    </subkey1>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att2">    ).strip
+        text += %(    will not be found       ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att3">    ).strip
+        text += %(    <subkey1 subatt="x3">   ).strip
+        text += %(      value2                ).strip
+        text += %(    </subkey1>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att4">    ).strip
+        text += %(    <subkey2 subatt="x1">   ).strip
+        text += %(      value                 ).strip
+        text += %(    </subkey2>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att5">    ).strip
+        text += %(    <subkey1 subatt="x1">   ).strip
+        text += %(      value                 ).strip
+        text += %(    </subkey1>              ).strip
+        text += %(  </key>                    ).strip
+        text += %(</root>                     ).strip
         @xml = DrunkenSakana.parse(text)
       end
 
