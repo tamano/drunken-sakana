@@ -1,18 +1,18 @@
 # Define XmlObject class
 class DrunkenSakana::XmlObject
-  @hash = nil
+  attr_accessor :hash_value
 
   def initialize(hash)
-    @hash = hash
+    @hash_value = hash
   end
 
   # return value of this object
   def content
     result = []
 
-    return @hash if @hash.is_a?(String)
+    return @hash_value if @hash_value.is_a?(String)
 
-    @hash.each do |key, value|
+    @hash_value.each do |key, value|
       if key == 'content'
         return value
       elsif value.is_a?(Array)
@@ -25,8 +25,9 @@ class DrunkenSakana::XmlObject
     result
   end
 
+  # to solve messeges to attribute
   def method_missing(name)
-    target_value = @hash[name.to_s]
+    target_value = @hash_value[name.to_s]
     # no element or attribute
     return nil unless target_value
 
