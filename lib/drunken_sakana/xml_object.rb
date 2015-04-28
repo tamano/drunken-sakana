@@ -42,4 +42,37 @@ class DrunkenSakana::XmlObject
 
     (result.size == 1) ? result[0] : result
   end
+
+  def find_by_content(path, comparation)
+    dig_element(path.split('.'), comparation).map {|v| DrunkenSakana::XmlObject.new(v) }
+  end
+
+  protected
+
+  def dig_element(path_array, comparation)
+    key_name = path_array[0]
+
+    if key_name.nil?
+      return (self.content == comparation) ? self.hash_value : nil
+    end
+
+    subject = send(key_name)
+    recursive_path = path_array.drop(1)
+
+    return nil if subject.nil?
+
+    result = []
+
+    if subject.is_a?(Array)
+      subject.each do |v|
+        sub_result = v.dig_element(recursive_path, comparation)
+        result << { key_name => [sub_result] } unless sub_result.nil?
+      end
+    else
+      sub_result = subject.dig_element(recursive_path, comparation)
+      result << { key_name => [sub_result] } unless sub_result.nil?
+    end
+
+    result
+  end
 end
