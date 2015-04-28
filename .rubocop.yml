@@ -33,6 +33,10 @@ Metrics/AbcSize:
   Enabled: true
   Max: 17
 
+Metrics/CyclomaticComplexity:
+  Enabled: true
+  Max: 10
+
 Style/AsciiComments:
   Enabled: false
 
