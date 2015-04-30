@@ -96,4 +96,54 @@ describe DrunkenSakana do
       end
     end
   end
+
+  describe '.find_by_content' do
+    context 'simple xml' do
+      before :all do
+        text  = ''
+        text += %(<root>                      ).strip
+        text += %(  <key attribute="att1">    ).strip
+        text += %(    value                   ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att2">    ).strip
+        text += %(    value2                  ).strip
+        text += %(  </key>                    ).strip
+        text += %(  <key attribute="att3">    ).strip
+        text += %(    value                   ).strip
+        text += %(  </key>                    ).strip
+        text += %(</root>                     ).strip
+        @xml = DrunkenSakana.parse(text)
+      end
+
+      it 'returns Array of XmlObjects filterd by element value' do
+        result = @xml.find_by_content('key', 'value')
+        expect(result.size).to eq(2)
+        expect(result[0].key.attribute).to eq('att1')
+        expect(result[1].key.attribute).to eq('att3')
+      end
+
+      it 'returns empty Array if no result has found'
+    end
+
+    context 'simple xml with other element' do
+      before :all do
+        text  = ''
+        text += %(<root>                      ).strip
+        text += %(  <target attribute="att1"> ).strip
+        text += %(    value                   ).strip
+        text += %(  </target>                 ).strip
+        text += %(  <dummy attribute="att2">  ).strip
+        text += %(    value                   ).strip
+        text += %(  </dummy>                  ).strip
+        text += %(</root>                     ).strip
+        @xml = DrunkenSakana.parse(text)
+      end
+
+      it 'returns Array of XmlObjects filterd by element value' do
+        result = @xml.find_by_content('target', 'value')
+        expect(result.size).to eq(1)
+        expect(result[0].target.attribute).to eq('att1')
+      end
+    end
+  end
 end
